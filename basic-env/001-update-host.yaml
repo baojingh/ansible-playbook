@@ -1,0 +1,19 @@
+---
+- hosts: 192.168.131
+  remote_user: root
+  tasks:
+    - name: update hostname
+      hostname:
+        name: hello.com
+    - name: add hosts
+      lineinfile: name=/etc/hosts line="192.168.1.131 hello.com"
+
+- hosts: 192.168.131
+  remote_user: root
+  tasks:
+    - name: update hostname
+      hostname:
+        name: hello.com
+    - name: add hosts
+      lineinfile: name=/etc/hosts line="192.168.1.131 hello.com"
+
