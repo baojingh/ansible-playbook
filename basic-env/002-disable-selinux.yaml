@@ -1,0 +1,19 @@
+---
+  - hosts: 192.168.1.131
+    remote_user: root
+    gather_facts: no
+    tasks:
+      - name: disable selinux
+        selinux: state=disabled
+
+      - name: check hostname and hosts
+        shell: |
+          sestatus
+        register: check_host_result
+      - debug:
+          var: check_host_result.stdout_lines
+
+      - name: reboot the host
+        shell: |
+          init 6
+        when:
