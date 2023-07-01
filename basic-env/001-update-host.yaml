@@ -20,7 +20,9 @@
       shell: |
         hostname
         cat /etc/hosts
-
+      register: check_host_result
+    - debug:
+        var: check_host_result.stdout_lines
 
 - hosts: 192.168.33
   remote_user: root
@@ -36,7 +38,7 @@
         cat /etc/hosts
       register: check_host_result
     - debug:
-            var: check_host_result.stdout_lines
+        var: check_host_result.stdout_lines
 
 
 - hosts: 192.168.34
@@ -53,7 +55,7 @@
         cat /etc/hosts
       register: check_host_result
     - debug:
-            var: check_host_result.stdout_lines
+        var: check_host_result.stdout_lines
 
 
 
@@ -71,7 +73,7 @@
         cat /etc/hosts
       register: check_host_result
     - debug:
-            var: check_host_result.stdout_lines
+        var: check_host_result.stdout_lines
 
 
 
@@ -89,5 +91,5 @@
         cat /etc/hosts
       register: check_host_result
     - debug:
-            var: check_host_result.stdout_lines
+        var: check_host_result.stdout_lines
 
