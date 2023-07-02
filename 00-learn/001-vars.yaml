@@ -1,0 +1,31 @@
+---
+- hosts: 127.0.0.1
+  remote_user: root
+  tasks:
+    - name: vcv
+      command: cat /etc/selinux/config
+      register: cmd_res
+
+    - name: show output
+      debug:
+        msg: "{{ cmd_res.stdout }}"
+#        var: cmd_res.stdout
+
+
+#{
+#    "stderr_lines": [],
+#    "changed": True,
+#    "end": "2023-07-02 22:40:35.009442",
+#    "failed": False,
+#    "stdot": "Sn Jl  2 22:40:35 CST 2023",
+#    "cmd": [
+#        "date"
+#    ],
+#    "rc": 0,
+#    "start": "2023-07-02 22:40:34.976987",
+#    "stderr": "",
+#    "delta": "0:00:00.032455",
+#    "stdot_lines": [
+#        "Sun Jl  2 22:40:35 CST 2023"
+#    ]
+#}
