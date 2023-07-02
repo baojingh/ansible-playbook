@@ -2,7 +2,8 @@
 - hosts: 127.0.0.1
   remote_user: root
   vars:
-    base_url_7: https://mirrors.aliyun.com/epel/7/x86_64/
+    base_url_7: https://mirrors.aliyun.com/centos/7/os/x86_64/
+    epel_url_7: https://mirrors.aliyun.com/epel/7/x86_64/
   tasks:
     - name: "backup repo"
       copy:
@@ -37,7 +38,7 @@
     - name: config epel
       yum_repository:
         name: epel
-        baseurl: "{{ base_url_7 }}"
+        baseurl: "{{ epel_url_7 }}"
         enabled: yes
         gpgcheck: no
         mode: 0644
