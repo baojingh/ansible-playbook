@@ -1,0 +1,24 @@
+---
+- hosts: 127.0.0.1
+  remote_user: root
+  gather_facts: false
+  tasks:
+    - name: dd
+      copy:
+        src: ./daemon.json
+        dest: /etc/docker/
+      notify: restart_docker
+
+  handlers:
+    - name: restart_docker
+      systemd:
+        name: docker
+        state: restarted
+
+
+
+# 当前需求是：当/etc/docker中操作了daemon.json文件之后，需要让docker重启。
+
+# 如果直接将重启服务定义成task，则执行此yaml之后，文件并未更新（复制），仍然会重启docker，这不合理。
+# 使用notify之后，检测到文件有文件变化，即有更新才去重启docker服务。
+# handler是触发器

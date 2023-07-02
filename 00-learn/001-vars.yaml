@@ -12,6 +12,9 @@
 #        var: cmd_res.stdout
 
 
+# msg 与 var不能同时使用
+
+
 #{
 #    "stderr_lines": [],
 #    "changed": True,
