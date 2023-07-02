@@ -1,6 +1,3 @@
-# 需要从github下载docker-compose，网速较慢，注意超时问题
-# ansible-playbook  006-setup-docker.yaml  -T  4
-
 ---
 - hosts: 127.0.0.1
   gather_facts: false
@@ -36,7 +33,7 @@
           ]
         }
         EOF
-        systemctl restart docker
+      notify: restart_docker
 
     - name: get docker-compose
       get_url:
@@ -45,3 +42,8 @@
         mode: 0755
         force: yes
 
+  handlers:
+    - name: restart_docker
+      service:
+        name: docker
+        state: restarted
