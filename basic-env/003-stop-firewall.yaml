@@ -1,3 +1,0 @@
----
-- hosts: 192.168.1.131
-  name: disable firewall
