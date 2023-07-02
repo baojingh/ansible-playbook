@@ -1,0 +1,25 @@
+---
+- hosts: 127.0.0.1
+  gather_facts: false
+  remote_user: root
+  tasks:
+    - name: yum-utils
+      yum:
+        name: yum-utils
+        state: present
+
+    - name: add docker repo
+      shell: |
+        yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+
+    - name: install docker-ce
+      yum:
+        name: docker-ce
+        state: present
+
+    - name: enable docker
+      service:
+        name: docker
+        state: started
+        enabled: true
+
