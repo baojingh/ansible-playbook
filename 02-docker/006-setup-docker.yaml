@@ -1,3 +1,6 @@
+# 需要从github下载docker-compose，网速较慢，注意超时问题
+# ansible-playbook  006-setup-docker.yaml  -T  4
+
 ---
 - hosts: 127.0.0.1
   gather_facts: false
@@ -22,4 +25,15 @@
         name: docker
         state: started
         enabled: true
+
+    - name: get docker-compose
+      get_url:
+        url: https://github.com/docker/compose/releases/download/v2.2.0/docker-compose-linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: 0755
+        force: yes
+
+    - name: update access
+      shell: mv /usr/local/bin/docker-compose-linux-x86_64 /usr/local/bin/docker-compose
+
 

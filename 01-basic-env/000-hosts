@@ -28,3 +28,4 @@ k8s-worker
 ansible_ssh_user="root"
 ansible_ssh_pass="hadoop"
 ansible_ssh_port=22
+timeout = 60
