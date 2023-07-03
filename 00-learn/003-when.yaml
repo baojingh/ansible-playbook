@@ -1,8 +1,9 @@
 ---
 - hosts:
-    vars: xx
     remote_user: root
     tasks:
-      - name: ck
-        yum:
+      - name: reboot selinux
+        shell: init 6
+        when: seli_res.stdout == "SELINUX=disabled"
+
 

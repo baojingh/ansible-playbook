@@ -1,0 +1,22 @@
+---
+- hosts: 127.0.0.1
+  remote_user: root
+  tasks:
+    - name: restart service
+      systemd:
+        name: "{{ item }}"
+        state: stopped
+      with_items:
+        - crond
+        - docker
+
+    - name: add multi users
+      user:
+        name: "{{ item.name }}"
+        uid: "{{ item.uid }}"
+        state: present
+        create_home: true
+      with_items:
+        - { name: 'user1', uid: '2001' }
+        - { name: 'user2', uid: '2002' }
+        - { name: 'user3', uid: '2003' }
