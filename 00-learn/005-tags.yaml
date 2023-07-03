@@ -1,6 +1,7 @@
 ---
 - hosts: 127.0.0.1
   remote_user: root
+  gather_facts: false
   tasks:
     - name: restart service
       systemd:
@@ -10,7 +11,7 @@
         - crond
         - docker
       tags:
-        - restart_service
+        - restart-service
 
     - name: add multi users
       user:
@@ -24,3 +25,13 @@
         - { name: 'user3', uid: '2003' }
       tags:
         - add-users
+
+
+
+# tags 适用于调试模式
+# --skip-tags 跳过指定标签
+# -t --tags 运行指定标签
+
+# ansible-palybook xxx.yaml --list-tags
+# ansible-palybook xxx.yaml  -t add-users
+
