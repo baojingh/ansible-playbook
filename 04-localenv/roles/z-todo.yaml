@@ -2,11 +2,10 @@
 - hosts: test
   remote_user: root
   roles:
-    - hosts
     - selinux
     - yum
     - ntp
-    - docker
+    - gitlab-server
   tags: install-test
 
 

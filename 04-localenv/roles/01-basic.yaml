@@ -1,0 +1,9 @@
+---
+- hosts: test
+  remote_user: root
+  roles:
+    - selinux
+    - yum
+    - ntp
+    - docker
+  tags: install-test

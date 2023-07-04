@@ -1,0 +1,25 @@
+- name: basic path
+  file:
+    path: "{{ item }}"
+    mode: 0777
+    with_items: {{ gitlab_file_path }}
+
+- name: pull docker image
+  shell: |
+    docker pull gitlab/gitlab-ee:{{ gitlab_version }}
+
+- name: copy docker-compose yaml
+  template:
+    src: docker-compose.yaml.j2
+    dest: /data/dockerImages/gitlab/docker-compose.yaml
+
+- name: start docker gitlab
+  shell: |
+    docker-compose -f /data/dockerImages/gitlab/docker-compose.yaml up -d
+
+- name: start docker gitlab
+  shell: |
+    cat >> /data/dockerImages/gitlab/config/gitlab.rb << EOF
+    external_url 'http://43.142.94.192'
+    EOF
+    
