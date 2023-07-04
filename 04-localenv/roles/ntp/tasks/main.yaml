@@ -5,15 +5,23 @@
   tags:
     - install_ntp
 
+- name: stop ntpd service
+  systemd:
+    name: ntpd
+    daemon_reload: yes
+    state: stopped
+  tags:
+    - stop_ntpd
+
 - name: set timezone to Asia-Shanghai
   shell: /usr/bin/timedatectl set-timezone Asia/Shanghai
   tags:
     - set_timezone
 
-- name: update ntp config ubuntu
-  template:
-    src: ntp.conf.ubuntu.j2
-    dest: /etc/ntp.conf
+- name: manual sync time with ntpdate
+  shell: /usr/sbin/ntpdate {{ ntp_server_1 }}
+  tags:
+    - manual_sync_datetime
 
 - name: remove lines in ntp.conf
   lineinfile:
@@ -29,32 +37,11 @@
     regexp: '^server'
     state: present
     line: |+
-      server ntp1.aliyun.com prefer
-      server ntp2.aliyun.com
+      server {{ ntp_server_1 }} prefer
+      server {{ ntp_server_2 }}
   tags:
     - add_new_ntpconf
-
-- name: stop ntpd service
-  systemd:
-    name: ntpd
-    daemon_reload: yes
-    state: stopped
-  tags:
-    - stop_ntpd
-
-- name: manual sync time with ntpdate
-  shell: /usr/sbin/ntpdate ntp1.aliyun.com
-  tags:
-    - manual_sync_datetime
-
-- name: enable and start ntpd
-  systemd:
-    name: ntpd
-    daemon_reload: yes
-    state: started
-    enabled: yes
-  tags:
-    - enable_start_ntpd
+  notify: enable and start ntpd
 
 - name: Control whether NTP is enabled
   shell: /usr/bin/timedatectl set-ntp yes
