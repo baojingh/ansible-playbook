@@ -1,0 +1,2 @@
+yum_base_url_7: https://mirrors.aliyun.com/centos/7/os/x86_64/
+yum_epel_url_7: https://mirrors.aliyun.com/epel/7/x86_64/

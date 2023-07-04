@@ -1,0 +1,55 @@
+---
+- hosts: test
+  remote_user: root
+  roles:
+    - hosts
+    - selinux
+    - yum
+    - ntp
+    - docker
+  tags: install-test
+
+
+#
+#- hosts: k8s-server
+#  remote_user: root
+#  roles:
+#    - ss
+#    - cxc
+#  tags: install-k8s-server
+#
+#- hosts: k8s-worker
+#  remote_user: root
+#  roles:
+#    - ss
+#    - cxc
+#  tags: install-k8s-worker
+#
+#- hosts: gitlab-sever
+#  remote_user: root
+#  roles:
+#    - ss
+#    - cxc
+#  tags: install-gitlab-sever
+#
+#- hosts: gitlab-runner
+#  remote_user: root
+#  roles:
+#    - ss
+#    - cxc
+#  tags: install-gitlab-runner
+#
+#- hosts: prometheus-sever
+#  remote_user: root
+#  roles:
+#    - ss
+#    - cxc
+#  tags: install-prometheus-sever
+#
+#- hosts: prometheus-runner
+#  remote_user: root
+#  roles:
+#    - ss
+#    - cxc
+#  tags: install-prometheus-runner
+

@@ -1,0 +1,41 @@
+- name: "backup repo"
+  copy:
+    src: "/etc/yum.repos.d"
+    dest: "/etc/yum.repos.d_bak"
+    backup: yes
+    force: true
+
+- name: clean old repo
+  file:
+    path: /etc/yum.repos.d/*
+    state: absent
+
+- name: config base
+  yum_repository:
+    name: base
+    baseurl: "{{ base_url_7 }}"
+    enabled: yes
+    gpgcheck: no
+    mode: 0644
+    file: Base
+    description: base
+    state: present
+  when: >
+    ansible_facts["distribution"] == "CentOS" and
+    ansible_facts["distribution_major_version"] == "7"
+  notify: update cache
+
+- name: config epel
+  yum_repository:
+    name: epel
+    baseurl: "{{ epel_url_7 }}"
+    enabled: yes
+    gpgcheck: no
+    mode: 0644
+    file: Epel
+    description: epel
+    state: present
+  when: >
+    ansible_facts["distribution"] == "CentOS" and
+    ansible_facts["distribution_major_version"] == "7"
+  notify: update cache
