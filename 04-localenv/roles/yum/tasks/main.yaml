@@ -13,7 +13,7 @@
 - name: config base
   yum_repository:
     name: base
-    baseurl: "{{ base_url_7 }}"
+    baseurl: "{{ yum_base_url_7 }}"
     enabled: yes
     gpgcheck: no
     mode: 0644
@@ -28,7 +28,7 @@
 - name: config epel
   yum_repository:
     name: epel
-    baseurl: "{{ epel_url_7 }}"
+    baseurl: "{{ yum_epel_url_7 }}"
     enabled: yes
     gpgcheck: no
     mode: 0644
