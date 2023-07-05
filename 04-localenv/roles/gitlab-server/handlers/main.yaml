@@ -2,3 +2,9 @@
 - name: stop_docker_gitlab
   shell: |
     docker-compose -f /data/dockerImages/gitlab/docker-compose.yaml down
+
+- name: start_docker_gitlab
+  shell: |
+    docker-compose -f /data/dockerImages/gitlab/docker-compose.yaml up -d
+    
+    
