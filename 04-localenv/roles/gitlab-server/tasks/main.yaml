@@ -20,6 +20,6 @@
 - name: start docker gitlab
   shell: |
     cat >> /data/dockerImages/gitlab/config/gitlab.rb << EOF
-    external_url 'http://43.142.94.192'
+    external_url 'http://127.0.0.1'
     EOF
     
