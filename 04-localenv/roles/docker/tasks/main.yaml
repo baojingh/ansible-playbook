@@ -33,7 +33,7 @@
 
 - name: get docker-compose
   get_url:
-    url: https://github.com/docker/compose/releases/download/v{{ docker-compose_version }}/docker-compose-linux-x86_64
+    url: https://github.com/docker/compose/releases/download/v{{ dockercompose_version }}/docker-compose-linux-x86_64
     dest: /usr/local/bin/docker-compose
     mode: 0755
     force: false
