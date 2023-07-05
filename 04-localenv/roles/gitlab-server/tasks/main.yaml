@@ -2,7 +2,7 @@
   file:
     path: "{{ item }}"
     mode: 0777
-    with_items: "{{ gitlab_file_path }}"
+  with_items: "{{ gitlab_file_path }}"
 
 - name: pull docker image
   shell: |
