@@ -18,7 +18,7 @@
     - start_docker_gitlab
 
 - name: update_gitlabrb
-  file:
+  copy:
     src: gitlab.rb
     dest: /data/dockerImages/gitlab/config/gitlab.rb
     mode: '0644'
