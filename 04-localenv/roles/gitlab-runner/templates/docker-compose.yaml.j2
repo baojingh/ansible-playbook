@@ -1,0 +1,9 @@
+version: '2'
+services:
+  gitlab-runner:
+    image: 'gitlab/gitlab-runner:{{ gitlabrunner_version }}'
+    restart: always
+    container_name: gitlab-runner
+    volumes:
+      - '/data/dockerImages/gitlab-runner/config:/etc/gitlab-runner'
+      - '/var/run/docker.sock:/var/run/docker.sock'

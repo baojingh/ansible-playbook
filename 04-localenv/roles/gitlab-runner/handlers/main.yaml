@@ -1,0 +1,10 @@
+---
+- name: stop_docker_gitlabrunner
+  shell: |
+    docker-compose -f /data/dockerImages/gitlab-runner/docker-compose.yaml down
+
+- name: start_docker_gitlabrunner
+  shell: |
+    docker-compose -f /data/dockerImages/gitlab-runner/docker-compose.yaml up -d
+    
+    
