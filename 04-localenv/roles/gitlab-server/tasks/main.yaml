@@ -13,14 +13,12 @@
   template:
     src: docker-compose.yaml.j2
     dest: /data/dockerImages/gitlab/docker-compose.yaml
+  notify:
+    - stop_docker_gitlab
+    - start_docker_gitlab
 
-- name: start docker gitlab
-  shell: |
-    docker-compose -f /data/dockerImages/gitlab/docker-compose.yaml up -d
-
-- name: start docker gitlab
-  shell: |
-    cat >> /data/dockerImages/gitlab/config/gitlab.rb << EOF
-    external_url 'http://127.0.0.1'
-    EOF
-    
+- name: update_gitlabrb
+  file:
+    src: gitlab.rb
+    dest: /data/dockerImages/gitlab/config/gitlab.rb
+    mode: '0644'
