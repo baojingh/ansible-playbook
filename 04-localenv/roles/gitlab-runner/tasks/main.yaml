@@ -17,7 +17,7 @@
     - stop_docker_gitlabrunner
     - start_docker_gitlabrunner
 
-- name: start docker gitlab
+- name: start docker gitlabrunner
   shell: |
     docker-compose -f /data/dockerImages/gitlab-runner/docker-compose.yaml up -d
 
