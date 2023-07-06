@@ -1,1 +1,1 @@
-external_url 'http://43.142.94.192'
+external_url 'http://gitlab.local.server'

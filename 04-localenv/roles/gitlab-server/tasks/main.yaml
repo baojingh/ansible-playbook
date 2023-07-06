@@ -7,7 +7,7 @@
 
 - name: pull docker image
   shell: |
-    docker pull gitlab/gitlab-ee:{{ gitlab_version }}
+    docker pull gitlab/gitlab-ce:{{ gitlab_version }}
 
 - name: copy docker-compose yaml
   template:

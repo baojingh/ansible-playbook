@@ -1,3 +1,6 @@
 gitlabrunner_version: v15.11.0
 gitlabrunner_file_path:
   - /data/dockerImages/gitlab-runner/config
+
+gitlab_server_register_url: http://43.142.94.192:8929/
+gitlab_server_register_token: GR1348941ysEzgjPwh2vu5o4eVfAV

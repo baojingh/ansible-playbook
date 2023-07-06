@@ -1,12 +1,13 @@
 version: '2'
 services:
   gitlab:
-    image: 'gitlab/gitlab-ee:{{ gitlab_version }}'
+    image: 'gitlab/gitlab-ce:{{ gitlab_version }}'
     restart: always
     container_name: gitlab
+    hostname: gitlab.local.server
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://43.142.94.192:8929'
+        external_url 'http://gitlab.local.server:8929'
         gitlab_rails['gitlab_shell_ssh_port'] = 2224
     ports:
       - '8929:80'
