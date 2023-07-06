@@ -3,5 +3,5 @@
   remote_user: root
   gather_facts: false
   roles:
-    - gitlab-runner
-  tags: install-gitlab-runner
+    - gitlab-server
+  tags: install-gitlab-server
