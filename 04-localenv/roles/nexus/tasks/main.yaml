@@ -2,7 +2,7 @@
   file:
     path: "{{ item }}"
     state: directory
-    mode: '0666'
+    mode: '0777'
     # This directory needs to be writable by the Nexus process,
     # which runs as UID 200
     owner: 200
