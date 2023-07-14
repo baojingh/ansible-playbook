@@ -1,20 +1,17 @@
 version: '2'
 services:
-  gitlab:
-    image: 'gitlab/gitlab-ce:{{ gitlab_version }}'
+  nexus:
+    image: '{{ version }}'
     restart: always
-    container_name: gitlab
-    hostname: gitlab.local.server
+    container_name: nexus
+    hostname: nexus.local.server
     environment:
-      GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://gitlab.local.server:8929'
-        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+      TZ: Asia/Shanghai
     ports:
-      - '8929:80'
-      - '2224:22'
+      - 8081:8081
+      - 8082:8082
+      - 8083:8083
     volumes:
-      - '/data/dockerImages/gitlab/config:/etc/gitlab'
-      - '/data/dockerImages/gitlab/logs:/var/log/gitlab'
-      - '/data/dockerImages/gitlab/data:/var/opt/gitlab'
-    shm_size: '256m'
+      - '/data/dockerImages/nexus/data:/nexus-data'
+
 
