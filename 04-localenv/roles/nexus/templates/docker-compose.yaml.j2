@@ -1,0 +1,20 @@
+version: '2'
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce:{{ gitlab_version }}'
+    restart: always
+    container_name: gitlab
+    hostname: gitlab.local.server
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://gitlab.local.server:8929'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+    ports:
+      - '8929:80'
+      - '2224:22'
+    volumes:
+      - '/data/dockerImages/gitlab/config:/etc/gitlab'
+      - '/data/dockerImages/gitlab/logs:/var/log/gitlab'
+      - '/data/dockerImages/gitlab/data:/var/opt/gitlab'
+    shm_size: '256m'
+

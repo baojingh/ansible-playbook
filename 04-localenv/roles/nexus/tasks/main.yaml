@@ -1,0 +1,23 @@
+- name: basic path
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0666'
+  with_items: "{{ file_path }}"
+
+- name: pull docker image
+  shell: |
+    docker pull {{ version }}
+
+- name: copy docker-compose yaml
+  template:
+    src: docker-compose.yaml.j2
+    dest: /data/dockerImages/nexus/docker-compose.yaml
+  notify:
+    - stop_service
+    - start_service
+
+- name: start docker
+  shell: |
+    docker-compose -f /data/dockerImages/nexus/docker-compose.yaml up -d
+

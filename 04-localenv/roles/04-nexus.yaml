@@ -1,0 +1,11 @@
+---
+- hosts: 127.0.0.1
+  remote_user: root
+  gather_facts: false
+  roles:
+    - selinux
+    - yum
+    - ntp
+    - docker
+    - nexus
+  tags: install-nexus
