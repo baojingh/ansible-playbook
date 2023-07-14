@@ -3,6 +3,9 @@
     path: "{{ item }}"
     state: directory
     mode: '0666'
+    # This directory needs to be writable by the Nexus process,
+    # which runs as UID 200
+    owner: 200
   with_items: "{{ file_path }}"
 
 - name: pull docker image
