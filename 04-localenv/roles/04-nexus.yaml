@@ -3,9 +3,5 @@
   remote_user: root
   gather_facts: false
   roles:
-    - selinux
-    - yum
-    - ntp
-    - docker
     - nexus
   tags: install-nexus
