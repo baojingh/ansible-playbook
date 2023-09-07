@@ -1,0 +1,5 @@
+gitlab_version: 15.11.9-ce.0
+gitlab_file_path:
+  - /data/dockerImages/gitlab/config
+  - /data/dockerImages/gitlab/logs
+  - /data/dockerImages/gitlab/data
