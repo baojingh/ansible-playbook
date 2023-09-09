@@ -1,0 +1,15 @@
+version: '2'
+services:
+  prometheus-server:
+    image: prom/prometheus:{{ prometheus_server_version }}
+    restart: always
+    container_name: prometheus-server
+    network_mode: host
+    hostname: prometheus-server
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - '9090:9090'
+    volumes:
+      - /data/dockerImages/prometheus-server/config:/etc/prometheus
+      - /data/dockerImages/prometheus-server/data:/prometheus

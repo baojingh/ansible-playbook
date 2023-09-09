@@ -1,0 +1,36 @@
+- name: basic path
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0777'
+  with_items: "{{ prometheus_server_path }}"
+
+- name: pull docker image
+  shell: |
+    docker pull gitlab/gitlab-runner:{{ prometheus_server_version }}
+
+- name: copy docker-compose yaml
+  template:
+    src: docker-compose.yaml.j2
+    dest: /data/dockerImages/gitlab-runner/docker-compose.yaml
+  notify:
+    - stop_docker_gitlabrunner
+    - start_docker_gitlabrunner
+
+- name: start docker gitlabrunner
+  shell: |
+    docker-compose -f /data/dockerImages/gitlab-runner/docker-compose.yaml up -d
+
+- name: register runner
+  shell: |
+    docker run -it --rm \
+    -v /data/dockerImages/gitlab-runner/config:/etc/gitlab-runner \
+    gitlab/gitlab-runner:{{ gitlabrunner_version }} register    \
+    --non-interactive  \
+    --executor "docker"   --docker-privileged   --docker-image docker:latest \
+    --url "{{ gitlab_server_register_url }}"  \
+    --registration-token "{{ gitlab_server_register_token }}"  \
+    --description "test-runner"   --tag-list "test"   \
+    --run-untagged="true"   --locked="false"  \
+    --access-level="not_protected"
+  run_once: true

@@ -1,0 +1,5 @@
+prometheus_server_version: v2.45.0
+prometheus_server_path:
+  - /data/dockerImages/prometheus-server/config
+  - /data/dockerImages/prometheus-server/data
+  - /data/dockerImages/prometheus-server/logs
