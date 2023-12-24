@@ -23,12 +23,5 @@
 
 - name: register runner
   shell: |
-    docker exec -it gitlab-runner gitlab-runner register    \
-    --non-interactive  \
-    --executor "docker"   --docker-privileged   --docker-image docker:latest \
-    --url "{{ gitlab_server_register_url }}"  \
-    --registration-token "{{ gitlab_server_register_token }}"  \
-    --description "runner for gitlab.com"   --tag-list "vm24"   \
-    --run-untagged="true"   --locked="false"  \
-    --access-level="not_protected"
+    docker exec -it gitlab-runner gitlab-runner  register  --non-interactive  --executor "docker"  --docker-privileged  --docker-image docker:latest  --url "{{ gitlab_server_register_url }}"  --registration-token "{{ gitlab_server_register_token }}"   --description "vm24 runner"   --tag-list "vm24"   --run-untagged="true" --locked="false"   --access-level="not_protected" --docker-pull-policy="if-not-present"
   run_once: true
