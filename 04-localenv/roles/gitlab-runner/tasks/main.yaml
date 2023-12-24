@@ -23,9 +23,7 @@
 
 - name: register runner
   shell: |
-    docker run -it --rm \
-    -v /data/dockerImages/gitlab-runner/config:/etc/gitlab-runner \
-    gitlab/gitlab-runner:{{ gitlabrunner_version }} register    \
+    docker exec -it gitlab-runner gitlab-runner register    \
     --non-interactive  \
     --executor "docker"   --docker-privileged   --docker-image docker:latest \
     --url "{{ gitlab_server_register_url }}"  \
