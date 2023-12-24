@@ -30,7 +30,7 @@
     --executor "docker"   --docker-privileged   --docker-image docker:latest \
     --url "{{ gitlab_server_register_url }}"  \
     --registration-token "{{ gitlab_server_register_token }}"  \
-    --description "test-runner"   --tag-list "test"   \
+    --description "runner for gitlab.com"   --tag-list "vm24"   \
     --run-untagged="true"   --locked="false"  \
     --access-level="not_protected"
   run_once: true
