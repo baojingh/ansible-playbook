@@ -7,3 +7,8 @@ This project includes two parts:
 Builtin link below. 
 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/
 
+
+# Example
+```commandline
+ansible-playbook  03-gitlab-runner.yaml 
+```
