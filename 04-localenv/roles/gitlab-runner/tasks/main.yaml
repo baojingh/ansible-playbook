@@ -25,5 +25,5 @@
 - # 因此需要手动执行
 - name: register runner
   shell: |
-    docker exec -it gitlab-runner gitlab-runner  register  --non-interactive  --executor "docker"  --docker-privileged  --docker-image docker:latest  --url "{{ gitlab_server_register_url }}"  --registration-token "{{ gitlab_server_register_token }}"   --description "vm24 runner"   --tag-list "vm24"   --run-untagged="true" --locked="false"   --access-level="not_protected" --docker-pull-policy="if-not-present"
+    docker exec -it gitlab-runner gitlab-runner  register  --non-interactive  --executor "docker"  --docker-privileged  --docker-image docker:latest  --url "{{ gitlab_server_register_url }}"  --registration-token "{{ gitlab_server_register_token }}"   --description "vm816 runner"   --tag-list "vm816"   --run-untagged="true" --locked="false"   --access-level="not_protected" --docker-pull-policy="if-not-present"
   run_once: true
